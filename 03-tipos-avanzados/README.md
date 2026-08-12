@@ -3,6 +3,7 @@
 Dentro de los tipos de datos que hemos visto hasta ahora, existen algunos que son más complejos y que nos permiten modelar estructuras de datos más sofisticadas. En esta sección, exploraremos algunos de estos tipos avanzados y cómo utilizarlos en nuestros programas.
 
 ## Listas
+
 Las listas son un tipo de dato que permite almacenar datos de cualquier tipo. Son MUTABLES y DINAMICAS, lo cual es la principal diferencia con los sets y tuplas.
 Se definen utilizando corchetes `[]` y los elementos se separan por comas. Las listas pueden contener elementos de diferentes tipos, incluyendo otras listas.
 
@@ -18,14 +19,14 @@ Tambien podemos crealas listas utilizando la función `list()`:
 mi_lista = list((1, 2, 3, 4, 5))
 ```
 
-Algunas Propiedades: 
+Algunas Propiedades
 
- - Son **ordenadas** , Mantienen el orden con el que se agregan los elementos.
- - Pueden ser formadas por tipos **arbitrarios**
- - Pueden ser **indexadas** con `[i]`, esto significa que podemos acceder a un elemento en particular de la lista utilizando su índice.
- - Se pueden **anidar**, es decir meter una lista dentro de otra
- - Son **Mutables**, ya que sus elementos pueden ser modificados después de su creación.
- - Son **Dinamicas**, ya que se pueden añadir o eliminar elementos de la lista en cualquier momento.
+- Son **ordenadas** , Mantienen el orden con el que se agregan los elementos.
+- Pueden ser formadas por tipos **arbitrarios**
+- Pueden ser **indexadas** con `[i]`, esto significa que podemos acceder a un elemento en particular de la lista utilizando su índice.
+- Se pueden **anidar**, es decir meter una lista dentro de otra
+- Son **Mutables**, ya que sus elementos pueden ser modificados después de su creación.
+- Son **Dinamicas**, ya que se pueden añadir o eliminar elementos de la lista en cualquier momento.
 
 ## Acceder a elementos de una lista
 
@@ -37,6 +38,7 @@ print(a[0]) #90
 print(a[1]) #Python
 print(a[2]) #3.87
 ```
+
 Tambien se puede acceder al ultimo elemento usando el indice `-1`, al penultimo con `-2` y asi sucesivamente.
 
 ```python
@@ -44,6 +46,7 @@ a = [90, "Python", 3.87]
 print(a[-1]) #3.87
 print(a[-2]) #Python
 ```
+
 Y si queremos modificar un elemento de la lista, basta con asignar con el operador `=` a la posición que queremos modificar.
 
 ```python
@@ -234,9 +237,10 @@ print(tupla) #(2,)
 print(type(tupla)) #<class 'tuple'>
 ```
 
-## Metodos 
+## Metodos
 
 ### count(obj)
+
 El método count() devuelve el número de veces que un elemento aparece en la tupla.
 
 ```python
@@ -287,13 +291,13 @@ print(d2)
 #{'Nombre': 'Sara', 'Edad': '27', 'Documento': '1003882'}
 ```
 
-## Algunas de las propiedades de los diccionarios son:
+## Algunas de las propiedades de los diccionarios son
 
 - Son **Dinamicos**, ya que se pueden añadir o eliminar elementos en cualquier momento.
 - Son **Indexados**, ya que podemos acceder a un elemento en particular del diccionario utilizando su clave.
 - Y Son **Anidados**, es decir, podemos tener un diccionario dentro de otro diccionario.
 
-## Acceder y modificar elementos 
+## Acceder y modificar elementos
 
 Se puede acceder a sus elementos con usar `[]` con el nombre del `key` y asignar el valor que queremos.
 
@@ -340,7 +344,7 @@ El método clear() elimina todo el contenido del diccionario.
 d = {"a": 1, "b": 2}
 d.clear()
 print(d) #{}
-``` 
+```
 
 ### get(key[, default])
 
@@ -352,6 +356,7 @@ print(d.get("a")) #1
 print(d.get("c")) #None
 print(d.get("c", "No encontrado")) #No encontrado
 ```
+
 ### items()
 
 El método items() devuelve una vista de todos los pares clave-valor del diccionario.
@@ -411,5 +416,116 @@ print(d1) #{'a': 1, 'b': 3, 'c': 4}
 
 > Reemplaza los valores del diccionario original con los valores del diccionario pasado como argumento si las claves coinciden. Si la clave no existe en el diccionario original, se agrega un nuevo par clave-valor.
 
+## Sets
 
-# Sets
+Los Sets en Python son una estructura usada para almacenar elementos de una manera similar a las listas, pero con ciertas diferencias.
+
+Los sets permiten almacenar varios elementos y acceder a ellos de una forma muy similar a las listas pero con ciertas diferencias
+
+- Los elementos de un set son **únicos**, es decir, no pueden repetirse.
+- Los sets son **desordenados**, lo que significa que no mantienen un orden específico de los elementos.
+- Sus elementos deben ser inmutables, es decir, no pueden ser modificados después de su creación. Por ejemplo, no se puede tener un set que contenga listas o diccionarios como elementos-
+
+Para crear un set en python, se utilizan llaves `{}` o la función `set()`. Por ejemplo:
+
+```python
+s = set([5, 4, 6, 8, 8, 1])
+print(s)       #{1, 4, 5, 6, 8}
+print(type(s)) #<class 'set'>
+```
+
+### Opciones con Sets
+
+A diferencia de las listas con set no podemos acceder a un elemento a traves de su indice . Si lo intentamos tendremos un , TypeError
+
+```python
+s = set([5, 6, 7, 8])
+#s[0] = 3 #Error! TypeError
+```
+
+Los elementos de un set deben ser inmutables, por lo que un elemento de un set no puede ser ni un diccionario ni una lista. Si lo intentamos tendremos un TypeError
+
+```python
+lista = ["Perú", "Argentina"]
+#s = set(["México", "España", lista]) #Error! TypeError
+```
+
+Con la funcion `len()` podemos saber la longitud total del `set`.Los duplicados son eliminados
+
+```python
+s = set([1, 2, 2, 3, 4])
+print(len(s)) #4
+```
+
+Tambien podemos saber si un elemento esta presente en un set con el operador  `in`. Si el valor existe en el set se devolvera, `True`.
+
+```python
+s = set(["Guitarra", "Bajo"])
+print("Guitarra" in s) #True
+```
+
+## Funcionalidades Sets
+
+```python
+primer = {1,1,2,2,3,4}
+segundo = [3,4,5]
+segundo = set(segundo)
+
+print(primer | segundo ) # Operador de Union --> Crea otro set con la union de los dos  
+print(primer & segundo) # Interseccion -> Crea otro set solo con los valores repetidos en cada uno
+print(primer - segundo) # Diferencia -> Crea otro set con los del primero excluidos los que se encuetren en el otro set
+print(primer ^ segundo) # Diferencia Simetrica --> Crea otro set con los elementos que estan en los dos sets pero no que estan en ambos
+```
+
+
+## Metodos Sets 
+
+### add(element)
+
+El método add() permite añadir un elemento al `set`.
+
+```python
+l = set([1, 2])
+l.add(3)
+print(l) #{1, 2, 3}
+```
+
+### remove(element)
+
+El método remove() elimina el elemento que se pasa como parámetro. Si no se encuentra, se lanza la excepción KeyError.
+
+```python
+s = set([1, 2])
+s.remove(2)
+print(s) #{1}
+```
+
+### discard(element)
+
+El método discard() es muy parecido al remove(), borra el elemento que se pasa como parámetro, y si no se encuentra no hace nada.
+
+```python
+s = set([1, 2])
+s.discard(3)
+print(s) #{1, 2}
+```
+
+### pop()
+
+El método pop() elimina un elemento aleatorio del set.
+
+```python
+s = set([1, 2])
+s.pop()
+print(s) #{2}
+```
+
+### clear(-)
+
+El método clear() elimina todos los elementos de set.
+
+```python
+s = set([1, 2])
+s.clear()
+print(s) #set()
+```
