@@ -477,8 +477,7 @@ print(primer - segundo) # Diferencia -> Crea otro set con los del primero exclui
 print(primer ^ segundo) # Diferencia Simetrica --> Crea otro set con los elementos que estan en los dos sets pero no que estan en ambos
 ```
 
-
-## Metodos Sets 
+## Metodos Sets
 
 ### add(element)
 
