@@ -2,8 +2,6 @@
 
 Python Usa las excepciones para manejar los errores de fomra satisfactoria. Es una forma de controlar el comportamiento de un programa cuando se produce un error. Esto es muy importante ya que salvo que tratemos ese error , **el programa se parara**.
 
-![Try_Except](./try_except.png)
-
 Imaginemos que tenemos el siguiente codigo:
 
 ```python
@@ -25,13 +23,13 @@ Este error es lanzado por `Python` (RAISE) en ingles ya que la division entre ce
 
 Se trata de la excepcion `ZeroDivisionError`. en este **enlace** [Built In Exceptions](https://docs.python.org/3/library/exceptions.html) van a poder ver todos los tipos de excepciones que existen:
 
-![Built in exceptions](./Built_In_Exceptions.png)
+![Built in exceptions](../image.png "")
 
 En base a esto es **muy importante controlar las excepciones** , porque por muchas comprobaciones que realicemos es posible que en algún momento ocurra una, y si no se hace nada el programa se parará.
 
 ## Uso de raise
 
-También podemos ser nosotros los que levantemos o lancemos una excepción. Volviendo a los ejemplos usados en el apartado anterior, podemos ser nosotros los que levantemos `ZeroDivisionError` o `NameError` usando `raise`. La sintaxis es muy fácil.
+También podemos ser nosotros los que levantemos o lancemos una excepción. Volviendo a los ejemplos usados en el apartado anterior, podemos ser nosotros los que levantemos ]]]`ZeroDivisionError` o `NameError` usando `raise`. La sintaxis es muy fácil.
 
 ```python
 raise ZeroDivisionError("Información de la excepción")
@@ -41,7 +39,7 @@ raise ZeroDivisionError("Información de la excepción")
 
 ## Uso de try y except
 
-El uso de Try y Except nos va a permitir **capturar estas excepciones** y manejarlas adecuadamente (sin que el programa se detenga)
+El uso de Try y Except nos va a permitir **capturar estas excepciones** y manejarlas adecuadamente (sin que el programa se detenga) 
 
 ```python
 a = 5; b = 0
