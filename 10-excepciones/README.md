@@ -39,7 +39,7 @@ raise ZeroDivisionError("Información de la excepción")
 
 ## Uso de try y except
 
-El uso de Try y Except nos va a permitir **capturar estas excepciones** y manejarlas adecuadamente (sin que el programa se detenga) 
+El uso de Try y Except nos va a permitir **capturar estas excepciones** y manejarlas adecuadamente (sin que el programa se detenga)
 
 ```python
 a = 5; b = 0
@@ -63,7 +63,7 @@ except TypeError:
     print("Problema de tipos!")
 ```
 
-##  Uso de finally
+## Uso de finally
 
 Este bloque se ejecuta siempre, haya o no haya habido excepción.
 

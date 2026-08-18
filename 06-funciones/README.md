@@ -1,6 +1,6 @@
 # Funciones
 
-Las funciones son bloques de codigo reutilizables que se usan para hacer una tarea especifica.Se crean a partir de la palabra reservada `def` 
+Las funciones son bloques de codigo reutilizables que se usan para hacer una tarea especifica.Se crean a partir de la palabra reservada `def`
 
 ```python
     def nombre_funcion(argumentos):
@@ -23,6 +23,7 @@ print(y) # 6
 - **Modularidad**, en vez de escribir largas piezas de codigo, es mejor crear modulos o funciones que agrupen ciertos fragmentos de codigos en funcionalidades especificas, haciendo que el codigo resulte mas facil de leer
 
 ## Argumentos Por Posicion
+
 Los argumentos por **posición** o posicionales son la forma más básica e intuitiva de pasar parámetros. Si tenemos una función ``resta()`` que acepta dos parámetros, se puede llamar como se muestra a continuación.
 
 ```python
@@ -90,7 +91,53 @@ def mi_funcion():
 mi_funcion() # Entra en mi_funcion
 ```
 
+## Funciones Lambda
+
+Las funciones ``lambda`` o anonimas son un tipo de funcion en python que tipicamente se definen en una sola linea de codigo y cuyo codigo suele ser pequeño.
+
+> "Las funciones ``lambda`` son simplemente una versiona cortada, que puedes usar si te da pereza escribir una funcion"
+
+Ejemplo, una funcion que suma dos numeros como la siguiente:
+
+```python
+def suma(a, b):
+    return a+b
+```
+
+Puede expresarse de la siguiente manera
+
+```python
+lambda a, b : a + b
+```
+
+De por si las funciones ``lambda``no tienen nombre, para eso debemos asignarla en una variable
+
+```python
+suma = lambda a, b: a + b
+suma(2, 4)
+```
+
+Si solo la queremos ejecutar una sola vez es posible llamarla en una sola linea tambien
+
+```python
+(lambda a, b: a + b)(2, 4)
+```
+
+## Ejemplo con Listas
+
+```python
+usuarios = [
+     ["Pulga", 5],
+     ["Chanchito", 4] ,
+     ["Felipe", 1]
+]
+
+usuarios.sort(key=lambda el:el[1], reverse=True)
+print(usuarios)
+```
+
 ## Anotaciones en funciones
+
 Existe una funcionalidad relativamente reciente en Python llamada **function annotation** o anotaciones en funciones. Dicha funcionalidad nos permite añadir metadatos a las funciones, indicando los tipos esperados tanto de entrada como de salida.
 
 ```python
