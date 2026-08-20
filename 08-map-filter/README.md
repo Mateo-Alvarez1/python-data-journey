@@ -1,4 +1,4 @@
-# Map / Filter & Reduce
+# Map / Filter / Reduce
 
 ## Map
 
@@ -7,7 +7,7 @@ La funcion ``map`` toma dos entradas:
 - Una lista o iterable que sera modificado en una nueva
 - Una funcion, que sera aplicada a cada uno de los elementos de la lista o iterable anterior
 
-Nos devuelve una nueva lista donde todos y cada uno de los elementos de la lista original han sido pasados por la función
+Nos devuelve una nueva lista donde todos y cada uno de los elementos de la lista original han sido pasados por la condicion
 
 ```python
 map(funcion_a_aplicar, entrada_iterable)
