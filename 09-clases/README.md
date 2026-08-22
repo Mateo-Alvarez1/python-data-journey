@@ -234,6 +234,215 @@ Acá, ``Categoria`` es el contenedor de ``Producto``. Cada ``Categoria`` tiene s
 - Da una interfaz clara: quien usa ``Categoria`` no necesita saber cómo está implementada la lista por dentro.
 
 ## Herencia
+
+La ``Herencia``a es el proceso mediante el cual se puede crear una clase ``hija`` que hereda de una clase ``padre``, compartiendo sus metodos y atributos. Ademas de ello una clase `hija` puede sobreescribir los metodos o atributos, o incluso definir unos nuevos
+
+Se puede crear una clase hija con tan solo pasar como parametro la clase de la que queremos heredar.
+
+```python
+#Clase Padre
+class Animal:
+    pass
+#Clase Hija que hereda de la padre 
+class Perro(Animal):
+    pass
+```
+
+Con el siguiente metodo podemos ver que clases en concreto descienden de ``Animal``
+
+```python
+print(Animal.__subclasses__())
+# [<class '__main__.Perro'>]
+```
+
+> ¿Para que queremos la Herencia?
+
+Dado que una clase hija hereda los atributos y metodos de la clase padre, nos puede ser muy util cuando tengamos clases que se parecen entre si pero tienen ciertas particularidades. En este caso en vez de definir un monton de clases para cada animal, podemos tomar los elementos comunes y crear una clase `Animal` de la que heredan el resto, respetando la filosofia **DRY**
+
+## Extendiendo Y Modificando Metodos
+Continuemos con nuestro ejemplo de perros y animales. Vamos a definir una clase padre `Animal` que tendra todos los atributos y metodos genericos.
+
+```python
+class Animal:
+    def __init__(self, especie, edad):
+        self.especie = especie
+        self.edad = edad
+
+    # Método genérico pero con implementación particular
+    def hablar(self):
+        # Método vacío
+        pass
+
+    # Método genérico pero con implementación particular
+    def moverse(self):
+        # Método vacío
+        pass
+
+    # Método genérico con la misma implementación
+    def describeme(self):
+        print("Soy un Animal del tipo", type(self).__name__)
+```
+
+Ahora creamos la clase `Perro` que va a heredar de `Animal`
+
+```python
+# Perro hereda de Animal
+class Perro(Animal):
+    pass
+
+mi_perro = Perro('mamífero', 10)
+mi_perro.describeme()
+# Soy un Animal del tipo Perro
+```
+
+## Uso del Super
+
+La funcion `Super` lo que nos permite es acceder a los metodos de la clase padre desde una de sus hijas. Volvamos al ejemplo de `Animal` y `Perro` 
+
+```python
+   class Animal:
+    def __init__(self, especie, edad):
+        self.especie = especie
+        self.edad = edad        
+    def hablar(self):
+        pass
+
+    def moverse(self):
+        pass
+
+    def describeme(self):
+        print("Soy un Animal del tipo", type(self).__name__) 
+```
+
+> Tal vez queramos que nuestro perro tenga un parametro extra en el contructor, como podria ser el Dueño. Tenemos dos alternativas para hacer esto
+
+- Podemos crear un nuevos `__init__` y guardar todas las varibales una a una
+- O podemos usar `super()` para llamar a `__init__` de la clase padre que ya acepta la `especie` y `edad` y solo asignar la variable nueva manualmente
+
+```python
+class Ave():
+    def __init__(self):
+        self.volador = "volador"
+    
+    def vuela(self):
+        print("Vuela ave")
+        
+class Pato(Ave):
+    
+    def __init__(self):
+        super().__init__() # llama al constructor de la clase padre para poder acceder a los atributos de la clase padre
+        self.nada = "nadando"
+    
+    def vuela(self):
+        super().vuela() # llama al metodo de la clase padre para poder acceder a los metodos de la clase padre
+        print("vuela pato")
+        
+
+pato = Pato()
+pato.vuela()
+print(pato.nada, pato.volador)
+```
+
+Podemos ver en este caso como se llama a ``super()`` en el constructor y se lo llama en el metodo `vuela` para sobreescribirlo
+
 ## Herencia Mutliple
-## Clases Abstractas
-## Polimorfismo 
+
+En Python es posible realizar **Herencia Multiple**, la misma significa que una clase **hereda de varias clases** padre en vez de una sola
+
+Ejemplo
+
+```python
+class Clase1:
+    pass
+class Clase2:
+    pass
+class Clase3(Clase1, Clase2):
+    pass
+```
+
+Otra forma de hacerlo es la siguiente
+
+```python
+class Clase1:
+    pass
+class Clase2(Clase1):
+    pass
+class Clase3(Clase2):
+    pass
+```
+
+Llegados a este punto nos podemos plantear lo siguiente. Vale, como sabemos de otros posts las clases hijas heredan los métodos de las clases padre, pero también pueden reimplementarlos de manera distinta. Entonces, si llamo a un método que todas las clases tienen en común ¿a cuál se llama?. Pues bien, existe una forma de saberlo.
+
+La forma de saber a que método se llama es consultar el **MRO** o **Method Order Resolution**. Esta función nos devuelve una tupla con el orden de búsqueda de los métodos. Como era de esperar se empieza en la propia clase y se va subiendo hasta la clase padre, de izquierda a derecha.
+
+```python
+class Clase1:
+    pass
+class Clase2:
+    pass
+class Clase3(Clase1, Clase2):
+    pass
+
+print(Clase3.__mro__)
+# (<class '__main__.Clase3'>, <class '__main__.Clase1'>, <class '__main__.Clase2'>, <class 'object'>)
+```
+
+Una curiosidad es que al final del todo vemos la clase ``object``. Aunque pueda parecer raro, es correcto ya que en realidad todas las clases en Python heredan de una clase genérica ``object``, aunque no lo especifiquemos explícitamente.`
+
+> OJO! POR QUE LA HERENCIA MULTIPLE NO SIEMPRE ES BUENO USARLA Y ACA VAN ALGUNOS MOTIVOS
+
+- **Problema del diamante (diamond problem)**. Si dos clases padre heredan de una misma clase base y ambas sobreescriben un método, la clase hija queda con ambigüedad sobre cuál versión usar. Python lo resuelve con el MRO (Method Resolution Order, algoritmo C3), pero el resultado no siempre es intuitivo a simple vista.
+
+- Cuando una clase hereda de 3-4 clases padre, saber de dónde viene un método o atributo específico deja de ser evidente con solo mirar el código — hay que revisar el MRO completo ``(D.__mro__)``
+
+- **Acoplamiento fuerte (fragile base class problem)**. Un cambio en una clase padre puede romper el comportamiento de la clase hija de forma inesperada, y ese efecto es más difícil de prever cuantas más clases padre hay involucradas
+
+- **Colisión de nombres**. Si dos clases padre definen atributos o métodos con el mismo nombre pero distinto propósito, se puede generar comportamiento inconsistente sin que salte ningún error.
+
+- **Mantenibilidad a largo plazo**. Jerarquías de herencia múltiple complejas son más difíciles de testear, refactorizar y entender para alguien que se suma al proyecto después.
+
+## Clases Abstractas -> Volver a ver clase
+
+## Polimorfismo
+
+El Polimorfismo es uno de los pilares basicos de la POO. El mismo tiene origen en *poly* (muchos) *morfo* (formas) y aplicado a la programacion hace referencia a que los objetos pueden tomar diferentes formas.
+
+¿Que quiere decir esto?
+Que muchos objetos pueden ser accedidos utilizando la misma interfaz, pero cada uno se va a comportar de acuerto a su propia naturaleza.
+
+Al ser un lenguaje con tipado dinámico y permitir duck typing, en Python no es necesario que los objetos compartan un interfaz, simplemente basta con que tengan los métodos que se quieren llamar.
+
+Explicado en criollo, el polimorfismo es:
+
+> La capacidad que tienen los objetos de comportarse de a cuerdo a su propia naturaleza cuando son accedidos mediante una misma interfaz.
+
+```python
+from abc import ABC, abstractmethod
+
+class Model(ABC):
+    @abstractmethod
+    def guardar(self):
+        pass
+        
+class Usuario(Model):
+    def guardar(self):
+        print("Guardar en la db")
+    
+ 
+    
+class Sesion(Model):
+    def guardar(self):
+        print("Guardar en el disco")
+        
+        
+        
+def guardar(entidades):
+    for entidad in entidades:
+        entidad.guardar()
+    
+    
+usuario = Usuario()
+sesion = Sesion()
+
+guardar([usuario, sesion])
+```
