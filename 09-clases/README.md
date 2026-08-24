@@ -539,3 +539,50 @@ sesion = Sesion()
 
 guardar([usuario, sesion])
 ```
+
+## Duck Typing
+
+El duck typing o tipado de pato es un concepto relacionado con la progrmacion que aplica a ciertos lenguajes orientados a objetos, y que tiene origen en la siguiente frase.
+
+> If it walks like a duck and it quacks like a duck, then it must be a duck
+
+Lo que se traduce como **Si camina como un pato y habla como un pato, entonces tiene que ser un pato.**
+
+Se trata de un simil en el que los **Patos** son **Objetos** y **hablar/andar son metodos**.Es decir, que si un determinado objeto tiene los metodos que nos interesan, nos basta, siendo su **tipo irrelevenate**
+
+Dicho de otra manera, no mires si es un pato. Fijate si habla como un pato o si camina como un pato. Si cumple con esas caracteristia ¿Por que no podriamos decir que se trata de un pato?
+
+Este concepto se fundamenta en el razonamiento inductivo. Donde una serie de premisas apoyan la conclusion, pero no la garantizan.
+
+Entendiendo el origen y llevandolo a python.En pocas palabras, **a Python le da igual los tipos de los objetos, lo unico que le importan son los metodos**
+
+```python
+class Pato:
+    def hablar(self):
+        print("¡Cua!, Cua!")
+```
+
+Y llamamos al método de la siguiente forma.
+
+```python
+p = Pato()
+p.hablar()
+# ¡Cua!, Cua!
+```
+
+Hasta aca nada nuevo, pero vamos a definir una función llama_hablar(), que llama al método hablar() del objeto que se le pase.
+
+```python
+def llama_hablar(x):
+    x.hablar()
+```
+
+Como podes observar, en Python no es necesario especificar los tipos, simplemente decimos que el parámetro de entrada tiene el nombre x, pero no especificamos su tipo.
+
+Cuando Python entra en la función y evalúa `x.hablar()`, le da igual el tipo al que pertenezca x siempre y cuando tenga el método hablar(). Esto es el duck typing en todo su esplendor.
+
+```python
+p = Pato()
+llama_hablar(p)
+# ¡Cua!, Cua!
+```
