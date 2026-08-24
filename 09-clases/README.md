@@ -260,6 +260,7 @@ print(Animal.__subclasses__())
 Dado que una clase hija hereda los atributos y metodos de la clase padre, nos puede ser muy util cuando tengamos clases que se parecen entre si pero tienen ciertas particularidades. En este caso en vez de definir un monton de clases para cada animal, podemos tomar los elementos comunes y crear una clase `Animal` de la que heredan el resto, respetando la filosofia **DRY**
 
 ## Extendiendo Y Modificando Metodos
+
 Continuemos con nuestro ejemplo de perros y animales. Vamos a definir una clase padre `Animal` que tendra todos los atributos y metodos genericos.
 
 ```python
@@ -297,7 +298,7 @@ mi_perro.describeme()
 
 ## Uso del Super
 
-La funcion `Super` lo que nos permite es acceder a los metodos de la clase padre desde una de sus hijas. Volvamos al ejemplo de `Animal` y `Perro` 
+La funcion `Super` lo que nos permite es acceder a los metodos de la clase padre desde una de sus hijas. Volvamos al ejemplo de `Animal` y `Perro`
 
 ```python
    class Animal:
@@ -401,7 +402,99 @@ Una curiosidad es que al final del todo vemos la clase ``object``. Aunque pueda 
 
 - **Mantenibilidad a largo plazo**. Jerarquías de herencia múltiple complejas son más difíciles de testear, refactorizar y entender para alguien que se suma al proyecto después.
 
-## Clases Abstractas -> Volver a ver clase
+## Clases Abstractas
+
+Una **Clase Abstracta** es como una **planilla** para otras clases. Define metodos que deben incluirse en todas las clases que hereden de ella, pero no proporciona el codigo real para esos metodos.
+Pensalo como una **receta sin ingredientes**. Indica los pasos pero no los detalles
+
+Ejemplo
+
+Supongamos que estás creando un programa para calcular el área de diferentes formas.
+
+- Creas una **clase abstracta** llamada ``Shape`` que establece que todas las formas **deben tener** un método ``area()``.
+- Pero ``Shape`` no define cómo funciona ``area()``, ya que la fórmula depende del tipo de forma.
+- Cada forma específica (como ``Circle`` o ``Rectangle``) **hereda** de ``Shape`` y proporciona su propia versión de ``area()``.
+
+## ¿Por que implementarlas?
+
+Implementar Clases Abstractas nos va a permitir:
+
+- **Aplicar la implementacion del metodo:** Los metodos de una Clase Abstracta funcionan como un **contrato**. Deben ser implementados si o si
+- **Reutilizacion de codigo:** Las clases abstractas fomentan los principios DRY
+- **Mejora La legilibidad**
+- **Fomenta el Polimorfismo**
+
+## Modulo ABC
+
+El modulo `abc` brinda un soporte solido para manejar clases abstractas. Incluyendo el decorador `abstractmethod` y la clase ``ABC``
+
+Ejemplo de Clase Abstracta
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * 3.14159 * self.radius
+
+# Uncommenting the following line will raise an error because we’re missing method implementations
+# shape = Shape() # TypeError: Can't instantiate abstract class Shape with abstract methods #area, perimeter
+
+circle = Circle(5)
+print(f"Area: {circle.area()}")
+print(f"Perimeter: {circle.perimeter()}")
+
+# Area: 78.53975
+# Perimeter: 31.4159
+```
+
+Ejemplo mas aplicado a la vida real
+
+```python
+from abc import ABC, abstractmethod
+
+class Model(ABC):
+    @abstractmethod
+    def guardar(self):
+        pass
+        
+class Usuario(Model):
+    def guardar(self):
+        print("Guardar en la db")
+    
+ 
+    
+class Sesion(Model):
+    def guardar(self):
+        print("Guardar en el disco")
+        
+        
+        
+def guardar(entidades):
+    for entidad in entidades:
+        entidad.guardar()
+    
+    
+usuario = Usuario()
+sesion = Sesion()
+
+guardar([usuario, sesion])
+```
 
 ## Polimorfismo
 
