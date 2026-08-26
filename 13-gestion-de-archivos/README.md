@@ -25,7 +25,6 @@ print("modificacion", ctime(archivo.stat().st_mtime))  # última vez que se edit
 from pathlib import Path
 
 archivo = Path("archivos/archivo-prueba.txt")
-
 texto = archivo.read_text("utf-8").split("\n")  # lee todo el contenido y lo separa en una lista, una línea por elemento
 texto.insert(0, "hola mundo")                    # insertamos una línea nueva al principio de la lista
 archivo.write_text("\n".join(texto), "utf-8")    # unimos la lista de nuevo en un solo string y sobreescribimos el archivo
@@ -90,3 +89,60 @@ Dos detalles importantes de este patrón, aprendidos a los golpes:
 - ``if not linea: continue`` — si el CSV tiene una línea vacía (común si se escribió sin newline="" en algún momento anterior), csv.reader la devuelve como lista vacía [], y linea[0] explota con IndexError: list index out of range. Este chequeo lo evita.
 
 -``os.remove() y os.rename() van FUERA del bloque with.`` Mientras el ``with`` sigue abierto, el archivo original está en uso por el proceso — Windows no permite borrar ni renombrar un archivo que sigue abierto ``(PermissionError: [WinError 32])``. Recién al salir del with, Python cierra los archivos automáticamente y ahí se puede operar sobre ellos sin problema.
+
+## Leer JSON
+
+JSON (JavaScript Object Notation) es un formato de texto para representar datos estructurados — es el formato más usado para intercambiar información entre sistemas (APIs, archivos de configuración, etc.). En Python se trabaja con el módulo estándar ``json``, y la clave para entenderlo es un solo concepto: convertir entre objetos de Python y texto plano, en los dos sentidos.
+
+### Escribir JSON
+
+Para escribir JSON en Python debemos primero ``serializar`` el objeto (lista, diccionario, etc) en un ``string`` con formato JSON, para poder guardarlo en un archivo o enviarlo por una red
+
+```python
+import json
+from pathlib import Path
+
+productos = [
+    {"id": 1, "nombre": "Surfboard"},
+    {"id": 2, "nombre": "Snowboard"},
+    {"id": 3, "nombre": "Skateboard"},
+]
+
+data = json.dumps(productos)  # convierte la lista de diccionarios en un string JSON
+Path("archivos/productos.json").write_text(data)
+```
+
+``json.dumps()``(dump string) toma ``productos`` —una lista de diccionarios, una estructura 100% de Python— y devuelve un string con ese mismo contenido pero en formato JSON:
+
+```python
+data = '[{"id": 1, "nombre": "Surfboard"}, {"id": 2, "nombre": "Snowboard"}, {"id": 3, "nombre": "Skateboard"}]'
+```
+
+Ese string es lo que se escribe en el archivo con ``write_text()``.
+
+> Nota: acá conviene sumar ``encoding="utf-8"`` en el ``write_text()`` (no está en el código original), para que nombres con tildes o "ñ" se guarden correctamente, igual que se hace en el ``read_text()`` de más abajo.
+
+### Leer Json
+
+Para leer JSON en Python debemos ``deserializar``, es decir, hacer el **proceso inverso**. Transformar el JSON a un Objeto Python
+
+```python
+data = Path("archivos/productos.json").read_text(encoding="utf-8")  # lee el archivo como texto plano
+productos = json.loads(data)  # convierte el string JSON en una lista de diccionarios de Python
+```
+
+``json.loads()`` (load string) hace lo opuesto a ``dumps()``: recibe un string y devuelve la estructura de Python equivalente. Después de esta línea, ``productos`` vuelve a ser una lista de diccionarios normal — se puede indexar, iterar, modificar como cualquier lista de Python.
+
+### Modificar datos y volver a guardar
+
+Como productos ya es una lista de diccionarios de Python normal después del ``loads()``, se modifica con la sintaxis habitual:
+
+```python
+productos[0]["nombre"] = "Chancho"  # accede al primer diccionario y cambia su clave "nombre"
+Path("archivos/productos.json").write_text(json.dumps(productos))
+print(productos)
+```
+
+**El flujo completo, en resumen:** ``dumps()`` → Python a texto (para guardar). ``loads()`` → texto a Python (para trabajar). No hay forma de modificar el JSON "directamente" en el archivo — siempre hay que leerlo y deserializarlo a Python primero, modificar el objeto en memoria, y volver a serializarlo para guardar los cambios.
+
+> Truco para recordar la diferencia: la versión con "s" al final (dumps, loads) trabaja con strings. La versión sin "s" (dump, load) trabaja directo con archivos. El código que estuviste viendo usa la versión con "s" porque combina json con pathlib (read_text/write_text), en vez de usar open() directamente.
