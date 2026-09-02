@@ -25,86 +25,84 @@ Acá voy subiendo todo lo que voy aprendiendo:
 
 ### Sintaxis y fundamentos
 
-- [ ] Variables
-- [ ] Tipos de datos
-- [ ] Strings
-- [ ] Numbers
-- [ ] Booleanos
-- [ ] Operadores aritméticos
-- [ ] Operadores de comparación
-- [ ] Operadores lógicos
-- [ ] Input / Output
-- [ ] Type Casting
+- [✅] Variables
+- [✅] Tipos de datos
+- [✅] Strings
+- [✅] Numbers
+- [✅] Booleanos
+- [✅] Operadores aritméticos
+- [✅] Operadores de comparación
+- [✅] Operadores lógicos
+- [✅] Input / Output
+- [✅] Type Casting
 
 ### Control de flujo
 
-- [ ] `if / elif / else`
-- [ ] Operador ternario
-- [ ] `for`
-- [ ] `while`
-- [ ] `break`
-- [ ] `continue`
-- [ ] `pass`
+- [✅] `if / elif / else`
+- [✅] Operador ternario
+- [✅] `for`
+- [✅] `while`
+- [✅] `break`
+- [✅] `continue`
+- [✅] `pass`
 
 ### Estructuras de datos
 
-- [ ] Lists
-- [ ] Tuples
-- [ ] Sets
-- [ ] Dictionaries
-- [ ] Indexing
-- [ ] Slicing
-- [ ] Métodos de listas
-- [ ] Métodos de strings
+- [✅] Lists
+- [✅] Tuples
+- [✅] Sets
+- [✅] Dictionaries
+- [✅] Indexing
+- [✅] Slicing
+- [✅] Métodos de listas
+- [✅] Métodos de strings
 
 ### Funciones
 
-- [ ] Definir funciones
-- [ ] Parámetros
-- [ ] Argumentos
-- [ ] `return`
-- [ ] Default arguments
-- [ ] `*args`
-- [ ] `**kwargs`
-- [ ] Scope
-- [ ] Lambda functions
+- [✅] Definir funciones
+- [✅] Parámetros
+- [✅] Argumentos
+- [✅] `return`
+- [✅] Default arguments
+- [✅] `*args`
+- [✅] `**kwargs`
+- [✅] Scope
+- [✅] Lambda functions
 
 ### Manejo de errores
 
-- [ ] `try`
-- [ ] `except`
-- [ ] `else`
-- [ ] `finally`
-- [ ] `raise`
+- [✅] `try`
+- [✅] `except`
+- [✅] `else`
+- [✅] `finally`
+- [✅] `raise`
 
 ### Archivos y módulos
 
-- [ ] Leer archivos
-- [ ] Escribir archivos
-- [ ] Trabajar con `.txt`
-- [ ] Trabajar con `.csv`
-- [ ] Imports
-- [ ] Modules
-- [ ] Packages
-- [ ] Virtual environments
-- [ ] `pip`
+- [✅] Leer archivos
+- [✅] Escribir archivos
+- [✅] Trabajar con `.txt`
+- [✅] Trabajar con `.csv`
+- [✅] Imports
+- [✅] Modules
+- [✅] Packages
+- [✅] Virtual environments
+- [✅] `pip`
 
 ### Python intermedio
 
-- [ ] List Comprehensions
-- [ ] Dictionary Comprehensions
-- [ ] Set Comprehensions
-- [ ] `map()`
-- [ ] `filter()`
-- [ ] `zip()`
-- [ ] `enumerate()`
-- [ ] Generators
-- [ ] Decorators
-- [ ] OOP
-- [ ] Classes
-- [ ] Inheritance
-
-
+- [✅] List Comprehensions
+- [✅] Dictionary Comprehensions
+- [✅] Set Comprehensions
+- [✅] `map()`
+- [✅] `filter()`
+- [✅] `zip()`
+- [✅] `enumerate()`
+- [✅] Generators
+- [✅] Decorators
+- [✅] OOP
+- [✅] Classes
+- [✅] Inheritance
 
 # 🔢 02 — NumPy
 
@@ -151,7 +149,6 @@ Acá voy subiendo todo lo que voy aprendiendo:
 - [ ] Generación de datos
 - [ ] Manipulación multidimensional
 - [ ] Ejercicios prácticos
-
 
 
 # 🐼 03 — Pandas
