@@ -10,6 +10,70 @@ Para empezar a trabajar con NumPy, primero hay que importar la librería:
 import numpy as np
 ```
 
+## Datos Heterogeneos
+
+Dijimo que los *ndarrays* son estructuras de datos que lamacenan un unitoc tipo de dato. A pesar de esto, es posible crear un array con los siguientes valores:
+
+```python
+np.array([1, 2.5, '3', True])
+# array(['1', '2.5', '3', 'True'], dtype='<U32')
+```
+
+> Aunque, a priori, puede parecer que estamos mezclando tipos enteros, flotantes y cadenas de texto, lo que realmente se produce (de forma implícita) es una coerción1 de tipos a Unicode
+
+## Tipo de datos
+
+NumPy proporciona un conjunto de tipos de datos que permiten especificar con precisión el tipo de cada elemento en un array. Algunos de los tipos más comunes incluyen:
+
+![Tipo de datos](image.png)
+
+Numpy entiende por defecto que *int* hace referencia a *int64* y que *float* hace referencia a *float64*. Son **Alias** bastante utilizados
+
+```python
+>> a = np.array(range(10))
+>>> a
+#array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+>>> a.dtype
+#int64
+```
+
+Es posible convertir el tipo de datos que almacena un array mediante el método astype:
+
+```python
+>>> a = np.array(range(10))
+>>> a = a.astype(float)
+>>> a
+#array([0., 1., 2., 3., 4., 5., 6., 7., 8., 9.])
+>>> a.dtype
+#float64
+```
+
+## Arrays Vs Listas de Python
+
+El uso de ``ndarray`` frente a ``list`` está justificado por cuestiones de rendimiento. Pero veamos un ejemplo
+clarificador en el que sumamos 10 millones de valores enteros:
+
+```python
+>>> array_as_list = list(range(10_000_000))
+>>> array_as_ndarray = np.array(array_as_list)
+
+>>> %timeit sum(array_as_list)
+# 27.5 ms ± 1.29 ms per loop (mean Â± std. dev. of 7 runs, 10 loops each)
+>>> %timeit array_as_ndarray.sum()
+# 1.29 ms ± 0.02 ms per loop (mean Â± std. dev. of 7 runs, 1000 loops each)
+
+>>> 27.5 // 1.29
+21.0 # 21 veces más rápido
+```
+
+En cualquier caso, existe la posibilidad de convertir a lista cualquier «ndarray» mediante el método tolist():
+
+```python
+>>> a = np.array(range(10))
+>>> a.tolist()
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
 ## 2. Creación de arrays
 
 ### 2.1. Array vacío: `np.empty()`
@@ -31,6 +95,13 @@ Crea un array completamente inicializado en `0`. Es útil cuando se necesita una
 ```python
 np.zeros((1,3))
 #array([[0., 0., 0.]])
+```
+
+Por defecto se obtienen valores *flotantes*. Si queremos generar valores enteros
+
+```python
+np.zeros((1,3), dtype=int)
+#array([[0, 0, 0]])
 ```
 
 ### 2.3. Array de unos: `np.ones()`
@@ -75,25 +146,28 @@ np.array([
 En este ejemplo se generan 32 números aleatorios enteros entre 0 y 10, y luego se reorganizan en una matriz de 4 filas por 8 columnas:
 
 ```python
-my_array = np.random.randint(0, 10, 32)
-my_array_reshape = np.reshape(my_array, (4,8))
-print(my_array_reshape)
-
+>>> my_array = np.random.randint(0, 10, 32)
+# array([6, 5, 5, 7, 5, 7, 5, 5, 9, 9, 6, 3, 8, 3, 6, 3,
+#        4, 3, 5, 4, 1, 5,
+>>> my_array_reshape = np.reshape(my_array, (4,8))
+>>> print(my_array_reshape)
 # [[6 5 5 7 5 7 5 5]
 #  [9 9 6 3 8 3 6 3]
 #  [4 3 5 4 1 5 5 5]
 #  [8 8 3 6 8 5 0 9]]
 ```
 
+> Buscá los divisores de ese número para armar combinaciones válidas,Para 32, algunas opciones son: (1,32), (2,16), (4,8), (8,4), (4,4,2), (2,2,2,2,2), etc.
+
 ## 4. Guardar y cargar arrays
 
 NumPy permite persistir arrays en disco en formato binario `.npy` mediante `np.save()`, y recuperarlos luego con `np.load()`.
 
 ```python
-m = np.array(range(1,13)).reshape(3,4)
-np.save("mi_matriz", m)          # Guardamos la matriz
-M_reloaded = np.load('mi_matriz.npy')   # La cargamos
-print(M_reloaded)
+>>> m = np.array(range(1,13)).reshape(3,4)
+>>> np.save("mi_matriz", m)          # Guardamos la matriz
+>>> M_reloaded = np.load('mi_matriz.npy')   # La cargamos
+>>> print(M_reloaded)
 
 #[[ 1 2 3 4]
 # [ 5 6 7 8]
@@ -109,7 +183,7 @@ El submódulo `np.random` ofrece varias funciones para generar números aleatori
 Genera valores flotantes aleatorios entre 0 y 1, siguiendo una distribución uniforme.
 
 ```python
-np.random.rand(3,3)
+>>> np.random.rand(3,3)
 
 #array([[0.19298778, 0.87955415, 0.95711903],
 #      [0.91836519, 0.47830142, 0.88391669],
