@@ -108,26 +108,26 @@ Acá voy subiendo todo lo que voy aprendiendo:
 
 ### Fundamentos
 
-- [ ] ¿Qué es NumPy?
-- [ ] `ndarray`
-- [ ] Crear arrays
-- [ ] `dtype`
-- [ ] Shape
-- [ ] Dimensions
-- [ ] `zeros()`
-- [ ] `ones()`
-- [ ] `arange()`
-- [ ] `linspace()`
+- [✅ ] ¿Qué es NumPy?
+- [ ✅] `ndarray`
+- [✅] Crear arrays
+- [✅] `dtype`
+- [✅] Shape
+- [✅] Dimensions
+- [✅] `zeros()`
+- [✅] `ones()`
+- [✅] `arange()`
+- [✅] `linspace()`
 
 ### Manipulación de arrays
 
-- [ ] Indexing
-- [ ] Slicing
-- [ ] Reshaping
-- [ ] Flattening
-- [ ] Transpose
-- [ ] Concatenation
-- [ ] Stacking
+- [✅ ] Indexing
+- [✅ ] Slicing
+- [✅ ] Reshaping
+- [✅ ] Flattening
+- [✅ ] Transpose
+- [✅ ] Concatenation
+- [✅ ] Stacking
 
 ### Operaciones
 

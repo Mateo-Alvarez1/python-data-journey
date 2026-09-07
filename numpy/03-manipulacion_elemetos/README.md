@@ -151,3 +151,110 @@ Insertar elementos en posiciones arbitrarias del array:
 #[3,6,4],
 # ]),
 ```
+
+## Apilando Matrices
+
+Hay ocasiones en las que nos interesa combinar dos matrices (arrays en general). Una de los mecanismos que nos proporciona NumPy es el apilado:
+
+### Apilado Vertical
+
+```python
+>>> m1 = np.random.randint(1, 100, size=(3, 2))
+>>> m2 = np.random.randint(1, 100, size=(1, 2))
+
+>>> m1
+#array([[ 5, 23],
+#       [12, 34],
+#       [45, 67]])
+>>> m2 
+# array([[89, 90]])
+>>>
+
+np.vstack((m1, m2))
+#array([[ 5, 23],
+#       [12, 34],
+#       [45, 67]]) 
+#      [89, 90]])
+```
+
+### Apilado Horizontal
+
+```python
+>>> m1 = np.random.randint(1, 100, size=(3, 2))
+>>> m2 = np.random.randint(1, 100, size=(1, 2))
+
+>>> m1
+#array([[ 5, 23],
+#       [12, 34],
+#       [45, 67]])
+>>> m2 
+# array([
+# [89],
+# [90],
+# [91]
+#])
+>>>
+
+np.hstack((m1, m2))
+#array([[ 5, 23, 89],
+#       [12, 34, 90],
+#       [45, 67, 91]])
+```
+
+## Repitiendo Elementos
+El parámetro de repetición indica el número de veces que repetimos el array completo por cada eje:
+
+### Repeticion por Ejes
+```python
+>>> values
+# array([
+#[1,2],
+#[3,4],
+#[5,6]])
+
+>>> np.tile(values, 3) # Repetimos cada array completo 3 veces
+# array([
+#[1,2,1,2,1,2],
+#[3,4,3,4,3,4],
+#[5,6,5,6,5,6] ])
+
+>>> np.tile(values, (2, 3)) # Repetimos el array completo 2 veces por el eje 0 (fila)y 3 veces por el eje 1 (columna)
+# array([
+#[1,2,1,2,1,2],
+#[3,4,3,4,3,4],
+#[5,6,5,6,5,6],
+#[1,2,1,2,1,2],
+#[3,4,3,4,3,4],
+#[5,6,5,6,5,6]
+# ])
+```
+
+### Repeticion por elementos
+
+```python
+>>> values
+# array([
+#[1,2],
+#[3,4],
+#[5,6]])
+>>> np.repeat(values, 2) # Repetimos cada elemento 2 veces
+# array([
+#[1,2,1,2],
+#[3,4,3,4],
+#[5,6,5,6]])
+>>> np.repeat(values, 2, axis=0) # Repetimos cada fila 2 veces
+# array([
+#[1,2],
+#[3,4], 
+#[5,6],
+#[1,2],
+#[3,4],
+#[5,6]])
+>>> np.repeat(values, 3, axis=1) # Repetimos cada columna 3 veces
+# array([
+#[1,1,1,2,2,2],
+#[3,3,3,4,4,4],
+#[5,5,5,6,6,6]])
+```
+
+## Acceso por Diagonal
