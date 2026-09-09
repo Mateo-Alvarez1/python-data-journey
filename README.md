@@ -224,8 +224,6 @@ Acá voy subiendo todo lo que voy aprendiendo:
 - [ ] Exploratory Data Analysis
 - [ ] Ejercicios prácticos
 
-
-
 # 📊 04 — Data Visualization
 
 ### Matplotlib
