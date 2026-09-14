@@ -258,3 +258,80 @@ El parámetro de repetición indica el número de veces que repetimos el array c
 ```
 
 ## Acceso por Diagonal
+
+El "acceso por diagonal" se refiere a las formas en que NumPy te permite leer, extraer o modificar los elementos que están en la diagonal principal (o diagonales secundarias) de una matriz, sin necesidad de recorrerla con bucles.
+
+### Las 4 herramientas principales
+
+1. ``np.diagonal()`` — Extraer la diagonal (solo lectura por defecto)
+
+```python
+import numpy as np
+
+m = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+diag = np.diagonal(m)
+print(diag)  # [1 5 9]
+```
+
+> Por defecto es un view de solo lectura (en NumPy moderno), así que si intentás modificarla directamente puede dar error o comportamiento no garantizado. Para editar, usá el método de abajo.
+
+2. ``np.fill_diagonal()`` — Rellenar la diagonal de una matriz con un valor específico
+
+```python
+m = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+np.fill_diagonal(m, 0)
+print(m)
+# [[0 2 3]
+#  [4 0 6]
+#  [7 8 0]]
+```
+
+> Cuándo usarlo: cuando necesitás anular la diagonal (por ejemplo, en una matriz de similitud donde no querés que un elemento se compare consigo mismo).
+
+3. ``np.diag()`` — Crear una matriz diagonal a partir de un vector o extraer la diagonal de una matriz
+
+```python
+# Caso A: si le das una matriz 2D -> extrae la diagonal
+m = np.array([[1, 2], [3, 4]])
+print(np.diag(m))  # [1 4]
+
+# Caso B: si le das un vector 1D -> construye una matriz diagonal
+v = np.array([1, 2, 3])
+print(np.diag(v))
+# [[1 0 0]
+#  [0 2 0]
+#  [0 0 3]]
+```
+
+> Cuándo usarlo: el Caso B es muy usado para crear matrices de escalado o pesos diagonales rápidamente.
+
+4. ``np.trace()`` — Calcular la suma de los elementos de la diagonal principal
+
+```python
+m = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+print(np.trace(m))  # 15  (1+5+9)
+```
+
+> Cuándo usarlo: la traza aparece en cálculos de varianza total (en PCA), en la fórmula de algunas métricas de regularización, y en teoría de grafos.
+
+## Diagonales que no son la "principal"
+
+Todas estas funciones aceptan el parámetro ``offset`` para desplazarte a diagonales superiores o inferiores:
+
+```python
+m = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+print(np.diagonal(m, offset=1))   # [2 6]  -> diagonal superior
+print(np.diagonal(m, offset=-1))  # [4 8]  -> diagonal inferior
+```
