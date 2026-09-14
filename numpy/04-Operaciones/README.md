@@ -241,6 +241,44 @@ array([[3.87788123, 3.21472768, 4.35024235],
 
 > La mayoria de estas funciones aceptan el parametro `axis` para reducir por filas (`axis=1`) o por columnas (`axis=0`) en lugar de sobre todo el array.
 
+### El parametro `axis` en detalle
+
+Sobre una matriz 2D, `axis` indica que eje se "colapsa" al aplicar la reduccion:
+
+- `axis=0` colapsa las **filas** y devuelve un resultado por cada **columna**.
+- `axis=1` colapsa las **columnas** y devuelve un resultado por cada **fila**.
+
+```python
+>>> toneladas = np.array([
+...     [145, 138, 120],  # Camion 1
+...     [152, 149, 130],  # Camion 2
+...     [98,  105, 90],   # Camion 3
+... ])
+
+>>> toneladas.sum(axis=0)   # Total por columna (por turno)
+array([395, 392, 340])
+
+>>> toneladas.sum(axis=1)   # Total por fila (por camion)
+array([403, 431, 293])
+```
+
+### Localizar el maximo o minimo con `argmax()` / `argmin()`
+
+`argmax()` y `argmin()` no devuelven el valor mas alto o mas bajo, sino su **indice**. Ese indice se puede usar despues para acceder a una lista de etiquetas asociada y obtener a que fila o columna corresponde, en lugar de recorrer los totales a mano buscando el extremo:
+
+```python
+>>> turnos = ["Mañana", "Tarde", "Noche"]
+>>> camiones = ["Camión 1", "Camión 2", "Camión 3"]
+
+>>> totales_por_turno = toneladas.sum(axis=0)
+>>> totales_por_camion = toneladas.sum(axis=1)
+
+>>> turnos[np.argmax(totales_por_turno)]
+'Mañana'
+>>> camiones[np.argmin(totales_por_camion)]
+'Camión 3'
+```
+
 ## Vectorizando funciones
 
 Cuando necesitamos aplicar una logica propia (no cubierta por las funciones de NumPy) a cada elemento de un array, lo ideal es **vectorizarla** para no perder rendimiento con bucles clasicos.

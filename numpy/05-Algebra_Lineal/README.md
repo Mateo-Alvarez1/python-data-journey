@@ -68,6 +68,19 @@ array([[1, 4],
        [3, 6]])
 ```
 
+Para arrays de mas de dos dimensiones (o cuando se quiere ser explicito sobre el orden de los ejes), se usa el metodo `.transpose(*axes)`, indicando el nuevo orden de los ejes por su posicion. En una matriz 2D, `.transpose(1, 0)` es equivalente a `.T`:
+
+```python
+>>> produccion = np.array([[145, 138, 120], [152, 149, 130], [98, 105, 90], [160, 155, 140]])
+>>> produccion.shape
+(4, 3)
+
+>>> produccion.transpose(1, 0).shape
+(3, 4)
+```
+
+> `.transpose(1, 0)` intercambia el eje 0 (filas) con el eje 1 (columnas): sirve para cambiar la perspectiva de los datos (por ejemplo, pasar de "filas = camiones, columnas = turnos" a "filas = turnos, columnas = camiones") sin modificar su contenido.
+
 ## Elevar matriz a potencia
 
 Elevar una matriz a una potencia (multiplicarla por si misma `n` veces usando el producto matricial, no elemento a elemento) se hace con `np.linalg.matrix_power()`:

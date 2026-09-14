@@ -152,6 +152,20 @@ Insertar elementos en posiciones arbitrarias del array:
 # ]),
 ```
 
+## Combinando Arrays: `np.concatenate()`
+
+`np.concatenate()` une una secuencia de arrays existentes en uno solo, a lo largo de un eje determinado. Con arrays de una dimensión simplemente los junta en secuencia:
+
+```python
+>>> produccion_lunes = np.array([120, 135, 140])
+>>> produccion_martes = np.array([125, 130, 145])
+
+>>> np.concatenate([produccion_lunes, produccion_martes])
+array([120, 135, 140, 125, 130, 145])
+```
+
+> `np.vstack()` y `np.hstack()` (más abajo) son casos particulares de `concatenate()`: internamente equivalen a concatenar a lo largo del eje 0 o del eje 1 respectivamente, pero resultan más legibles cuando se trabaja con matrices en lugar de arrays de una dimensión.
+
 ## Apilando Matrices
 
 Hay ocasiones en las que nos interesa combinar dos matrices (arrays en general). Una de los mecanismos que nos proporciona NumPy es el apilado:

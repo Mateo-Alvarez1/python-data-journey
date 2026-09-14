@@ -139,6 +139,41 @@ np.array([
 #      [1, 2, 3, 4, 5, 6]])
 ```
 
+### 2.6. Secuencias con paso fijo: `np.arange()`
+
+`np.arange(inicio, fin, paso)` genera un array con valores espaciados por un paso fijo, de forma similar a la función `range()` de Python. El valor `fin` **no se incluye** en el resultado.
+
+```python
+>>> np.arange(0, 8, 1)
+array([0, 1, 2, 3, 4, 5, 6, 7])
+```
+
+> Para que un valor puntual quede incluido en la secuencia hay que ajustar el límite superior en consecuencia. Por ejemplo, para llegar hasta el valor `50` con paso `2`, el límite superior tiene que ser `51`, no `50`, porque `arange()` excluye el último valor:
+>
+> ```python
+> >>> np.arange(0, 51, 2)
+> array([ 0,  2,  4, ..., 46, 48, 50])
+> ```
+
+### 2.7. Secuencias equiespaciadas: `np.linspace()`
+
+`np.linspace(inicio, fin, cantidad)` genera una cantidad exacta de puntos equiespaciados entre dos valores, **incluyendo ambos extremos**. A diferencia de `arange()`, acá se especifica cuántos puntos se necesitan en total, no el tamaño del paso.
+
+```python
+>>> np.linspace(0, 100, 5)
+array([  0.,  25.,  50.,  75., 100.])
+```
+
+> **Cuidado con `dtype=int` en `linspace()`:** si se fuerza el tipo entero directamente en la llamada, los valores se **truncan** (no se redondean), y el resultado deja de estar perfectamente equiespaciado. Es preferible generar los valores como flotantes y redondear después con `np.round()` y `.astype(int)`:
+>
+> ```python
+> >>> valores = np.linspace(0, 12, 6)
+> >>> valores
+> array([ 0. ,  2.4,  4.8,  7.2,  9.6, 12. ])
+> >>> np.round(valores).astype(int)
+> array([ 0,  2,  5,  7, 10, 12])
+> ```
+
 ## 3. Reestructurar arrays: `np.reshape()`
 
 `reshape()` permite cambiar la forma (dimensiones) de un array sin modificar sus datos, siempre y cuando la nueva forma sea compatible con la cantidad total de elementos.
@@ -158,6 +193,20 @@ En este ejemplo se generan 32 números aleatorios enteros entre 0 y 10, y luego 
 ```
 
 > Buscá los divisores de ese número para armar combinaciones válidas,Para 32, algunas opciones son: (1,32), (2,16), (4,8), (8,4), (4,4,2), (2,2,2,2,2), etc.
+
+## 3.1. Aplanar arrays: `.flatten()`
+
+`.flatten()` convierte cualquier array multidimensional en un array de una sola dimensión, recorriendo los elementos en orden. Es útil cuando importa el conjunto de valores y no cómo estaban organizados en filas y columnas (por ejemplo, para calcular un promedio general sobre todos los datos).
+
+```python
+>>> matriz = np.array([[0.8, 0.9], [1.1, 0.6]])
+>>> matriz.flatten()
+array([0.8, 0.9, 1.1, 0.6])
+>>> matriz.flatten().mean()
+0.85
+```
+
+> A diferencia de `.reshape()`, `.flatten()` siempre devuelve una **copia** independiente del array original, no una vista.
 
 ## 4. Guardar y cargar arrays
 
