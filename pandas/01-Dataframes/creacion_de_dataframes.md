@@ -69,4 +69,5 @@ Por defecto, `read_csv()` asume que el delimitador es una coma (`,`). Cuando el 
 
 ## Conceptos relacionados
 
-- [Índice de Pandas](INDEX.md)
+- [Atributos y métodos generales de un DataFrame](atributos_de_dataframes.md)
+- [Índice de Pandas](../INDEX.md)
