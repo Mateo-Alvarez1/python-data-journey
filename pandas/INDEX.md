@@ -9,6 +9,8 @@ Documentación técnica de referencia sobre la librería Pandas, generada a part
 - [Exploración de DataFrames](./02-Exploracion/exploracion_de_dataframes.md): inspección de un `DataFrame` con `.head()`, `.tail()`, `.sample()`, selección de un rango de filas con `.iloc[]` y visualización interactiva con `itables`.
 - [Series](./03-Series/series.md): qué es una `Series`, cómo se obtiene a partir de un `DataFrame` y sus atributos/métodos básicos.
 - [Selección y creación de columnas](./04-Seleccion/seleccion_de_columnas.md): selección de una o varias columnas y agregado de columnas nuevas a partir de valores escalares o arrays.
-- [Operaciones con DataFrames y Series](./05-Operaciones/operaciones_con_dataframes.md): métodos de agregación (`.sum()`, `.count()`, `.mean()`, `.std()`, `.min()`, `.max()`) y operaciones aritméticas entre columnas.
+- [Operaciones con DataFrames y Series](./05-Operaciones/operaciones_con_dataframes.md): métodos de agregación (`.sum()`, `.count()`, `.mean()`, `.std()`, `.min()`, `.max()`), conteo de frecuencias por categoría (`value_counts()`, incluyendo el parámetro `normalize`), ordenamiento con `sort_values()` (una o varias columnas, `ascending`, `inplace`, `key`) y operaciones aritméticas entre columnas.
+- [Visualización de DataFrames](./06-Visualizacion/visualizacion_de_dataframes.md): gráficos generados directamente desde un `DataFrame` con `.plot(kind='scatter')`.
+- [Regresión lineal sobre datos de Pandas](./07-Analisis-Estadistico/regresion_lineal.md): construcción de un modelo de regresión lineal simple con `statsmodels` (`sm.add_constant()`, `sm.OLS()`, `.fit()`, `.predict()`, `.summary()`) a partir de columnas de un `DataFrame`.
 
-Esta sección se irá ampliando a medida que se incorporen nuevos notebooks (selección avanzada con `.loc[]`, indexado booleano, limpieza, `groupby`, combinación de datasets, `value_counts()`, etc.).
+Esta sección se irá ampliando a medida que se incorporen nuevos notebooks (selección avanzada con `.loc[]`, indexado booleano, limpieza, `groupby`, combinación de datasets, etc.).
