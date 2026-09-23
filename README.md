@@ -131,54 +131,54 @@ Acá voy subiendo todo lo que voy aprendiendo:
 
 ### Operaciones
 
-- [ ] Operaciones matemáticas
-- [ ] Operaciones estadísticas
-- [ ] `sum()`
-- [ ] `mean()`
-- [ ] `median()`
-- [ ] `std()`
-- [ ] `min()`
-- [ ] `max()`
-- [ ] Operaciones vectorizadas
-- [ ] Broadcasting
+- [✅] Operaciones matemáticas
+- [✅] Operaciones estadísticas
+- [✅] `sum()`
+- [✅] `mean()`
+- [✅] `median()`
+- [✅] `std()`
+- [✅] `min()`
+- [✅] `max()`
+- [✅] Operaciones vectorizadas
+- [✅] Broadcasting
 
 ### NumPy aplicado
 
-- [ ] Boolean indexing
-- [ ] Random
-- [ ] Generación de datos
-- [ ] Manipulación multidimensional
-- [ ] Ejercicios prácticos
+- [✅] Boolean indexing
+- [✅] Random
+- [✅] Generación de datos
+- [✅] Manipulación multidimensional
+- [✅] Ejercicios prácticos
 
 
 # 🐼 03 — Pandas
 
 ### Fundamentos
 
-- [ ] ¿Qué es Pandas?
-- [ ] Series
-- [ ] DataFrames
-- [ ] Index
-- [ ] Columns
-- [ ] `shape`
-- [ ] `info()`
-- [ ] `describe()`
+- [✅] ¿Qué es Pandas?
+- [✅] Series
+- [✅] DataFrames
+- [✅] Index
+- [✅] Columns
+- [✅] `shape`
+- [✅] `info()`
+- [✅] `describe()`
 
 ### Importar y exportar datos
 
-- [ ] CSV
-- [ ] Excel
-- [ ] JSON
-- [ ] SQL
-- [ ] Exportar DataFrames
+- [✅] CSV
+- [✅] Excel
+- [✅] JSON
+- [✅] SQL
+- [✅] Exportar DataFrames
 
 ### Selección de datos
 
-- [ ] `loc`
-- [ ] `iloc`
-- [ ] Selección de columnas
-- [ ] Selección de filas
-- [ ] Filtering
+- [✅] `loc`
+- [✅] `iloc`
+- [✅] Selección de columnas
+- [✅] Selección de filas
+- [✅] Filtering
 - [ ] Boolean conditions
 - [ ] Multiple conditions
 
@@ -265,51 +265,51 @@ Acá voy subiendo todo lo que voy aprendiendo:
 
 ### SQL Fundamentals
 
-- [ ] SELECT
-- [ ] WHERE
-- [ ] ORDER BY
-- [ ] LIMIT
-- [ ] DISTINCT
-- [ ] LIKE
-- [ ] IN
-- [ ] BETWEEN
-- [ ] CASE
+- [✅] SELECT
+- [✅] WHERE
+- [✅] ORDER BY
+- [✅] LIMIT
+- [✅] DISTINCT
+- [✅] LIKE
+- [✅] IN
+- [✅] BETWEEN
+- [✅] CASE
 
 ### Aggregations
 
-- [ ] COUNT
-- [ ] SUM
-- [ ] AVG
-- [ ] MIN
-- [ ] MAX
-- [ ] GROUP BY
-- [ ] HAVING
+- [✅] COUNT
+- [✅] SUM
+- [✅] AVG
+- [✅] MIN
+- [✅] MAX
+- [✅] GROUP BY
+- [✅] HAVING
 
 ### Joins
 
-- [ ] INNER JOIN
-- [ ] LEFT JOIN
-- [ ] RIGHT JOIN
-- [ ] FULL JOIN
-- [ ] CROSS JOIN
+- [✅] INNER JOIN
+- [✅] LEFT JOIN
+- [✅] RIGHT JOIN
+- [✅] FULL JOIN
+- [✅] CROSS JOIN
 
 ### SQL avanzado
 
-- [ ] Subqueries
-- [ ] CTEs
-- [ ] Window Functions
-- [ ] `ROW_NUMBER()`
-- [ ] `RANK()`
-- [ ] `LAG()`
-- [ ] `LEAD()`
-- [ ] Date functions
+- [✅] Subqueries
+- [✅] CTEs
+- [✅] Window Functions
+- [✅] `ROW_NUMBER()`
+- [✅] `RANK()`
+- [✅] `LAG()`
+- [✅] `LEAD()`
+- [✅] Date functions
 
 ### SQL + Python
 
-- [ ] Conectar Python con SQL
-- [ ] Consultar bases de datos desde Python
-- [ ] Importar resultados a Pandas
-- [ ] Analizar datos SQL con Pandas
+- [✅] Conectar Python con SQL
+- [✅] Consultar bases de datos desde Python
+- [✅] Importar resultados a Pandas
+- [✅] Analizar datos SQL con Pandas
 
 
 
